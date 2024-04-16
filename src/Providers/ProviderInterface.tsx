@@ -1,3 +1,3 @@
-export interface ProviderInterface {
+export default interface ProviderInterface {
   rerender(): void;
 }

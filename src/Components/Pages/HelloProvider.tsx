@@ -1,12 +1,13 @@
 import React, { Profiler } from "react";
 import "../../CSS/utilities.css";
-import ProviderInterface from "../../Providers/BasicProvider";
+import ProviderInterface from "../../Providers/ProviderInterface";
 import BasicProvider from "../../Providers/BasicProvider";
+import ProviderExample from "./ProviderExemple";
 
-export default class HelloWorld
+
+export default class HelloWorldProvider
   extends React.Component
-  implements ProviderInterface
-{
+  implements ProviderInterface {
   constructor(props: any) {
     super(props);
   }
@@ -20,24 +21,19 @@ export default class HelloWorld
   rerender() {
     this.forceUpdate();
   }
-
-  onRenderCallback(
-    id: any, // the "id" prop of the Profiler tree that has just committed
-    phase: any, // either "mount" (if the tree just mounted) or "update" (if it re-rendered)
-    actualDuration: any, // time spent rendering the committed update
-    baseDuration: any, // estimated time to render the entire subtree without memoization
-    startTime: any, // when React began rendering this update
-    commitTime: any, // when React committed this update
-    interactions: any // the Set of interactions belonging to this update
-  ) {
-    console.log(id + " " + phase + " " + interactions);
-  }
+  myStyle = {
+    color: 'white',
+    backgroundColor: 'blue',
+    padding: '10px',
+    fontSize: '20px'
+  };
 
   render() {
     return (
-      <Profiler id="helloworld" onRender={this.onRenderCallback}>
+      <div className="fullCenter" style={{ display: "flex", flexDirection: "column" }}>
         <span>HELLO WORLD {BasicProvider.clock}</span>
-      </Profiler>
+        <ProviderExample />
+      </div >
     );
   }
 }

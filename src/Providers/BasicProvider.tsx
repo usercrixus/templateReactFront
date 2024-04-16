@@ -1,9 +1,9 @@
-import { ProviderInterface } from "./ProviderInterface";
+import ProviderInterface from "./ProviderInterface";
 
 export default class BasicProvider {
   static subscribers: ProviderInterface[] = [];
 
-  static clock: number = 0;
+  static clock: number = Date.now()
 
   static subscribe(subscriber: ProviderInterface) {
     BasicProvider.subscribers.push(subscriber);
@@ -22,8 +22,8 @@ export default class BasicProvider {
     });
   }
 
-  static setClock(value: number) {
-    BasicProvider.clock = value;
+  static setClock() {
+    BasicProvider.clock = Date.now()
     BasicProvider.notify();
   }
 }
